@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+
+  proxy:
+    image: sameersbn/squid:3.5.27-2
+    ports:
+      - 3128:3128
+    volumes:
+      - squid:/var/spool/squid:rw
+      - ./squid.conf:/etc/squid/squid.conf
+    restart: always
+
+  alpine:
+    image: alpine:3.13
+    command: ["sleep", "3600"]
+    restart: on-failure
+    links:
+      - proxy
+    environment:
+      ftp_proxy: http://proxy:3128
+      http_proxy: http://proxy:3128
+      https_proxy: http://proxy:3128
+    depends_on:
+      - proxy
+
+  corretto:
+    image: amazoncorretto:11-alpine
+    command: ["sleep", "3600"]
+    restart: on-failure
+    links:
+      - proxy
+    environment:
+      ftp_proxy: http://proxy:3128
+      http_proxy: http://proxy:3128
+      https_proxy: http://proxy:3128
+    depends_on:
+      - proxy
+
+volumes:
+  squid:

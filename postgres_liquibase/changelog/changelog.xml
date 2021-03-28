@@ -10,7 +10,7 @@
       <dbms type="postgresql" />
     </preConditions>
 
-    <changeSet id="1" author="Constantin Bugneac">
+    <changeSet id="1" author="Author Anon">
       <tagDatabase tag="v1.0.0"/>
     <!--Insert XML changes objects here https://www.liquibase.org/documentation/xml_format.html-->
     </changeSet>
