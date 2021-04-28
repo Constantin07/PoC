@@ -85,7 +85,7 @@ DB="test"
 create_role $DB_HOST $DB_USER $POSTGRES_DB $USER $PASSWORD
 add_regular_privileges $DB_HOST $DB_USER $POSTGRES_DB $USER $DB
 
-# Mogration user
+# Migration user
 USER="migration"
 PASSWORD="migration"
 DB="test"
