@@ -4,7 +4,7 @@ POSTGRES_PASSWORD ?= migration
 POSTGRES_HOST ?= localhost
 POSTGRES_DB ?= test
 
-IMAGE = liquibase/liquibase:4.4.3
+IMAGE = liquibase/liquibase:4.5.0
 OPTIONS = --rm --network=host -v `pwd`/changelog:/liquibase/changelog:rw -e JAVA_OPTS="-DLiquibaseHubMode=off"
 
 # Common config
