@@ -42,7 +42,44 @@ Show version of Kafka broker:
 kafka-broker-api-versions --bootstrap-server localhost:19092 --version
 ```
 
+### Topics
+
+Get the list of topics:
+```bash
+kafka-topics --bootstrap-server $BROKERS --list
+```
+
 Create topic:
 ```bash
 kafka-topics 
 ```
+
+Describe topic:
+```bash
+kafka-topics --bootstrap-server $BROKERS --describe --topic test-topic
+```
+
+### Consume messages
+
+Consume messages from topic:
+```bash
+kafka-console-consumer --bootstrap-server $BROKERS --topic test-topic --from-beginning
+```
+
+Consume messages from topic using consumer-group:
+```bash
+kafka-console-consumer --bootstrap-server $BROKERS --topic test-topic --group test-consumer-group
+```
+
+### Consumer groups
+
+List consumer-groups:
+```bash
+kafka-consumer-groups --bootstrap-server $BROKERS --list
+```
+
+Describe consumer-group:
+```bash
+kafka-consumer-groups --bootstrap-server $BROKERS --describe --group test-consumer-group
+```
+

@@ -91,3 +91,9 @@ ENV/
 
 # Dependency directories and files
 node_modules/
+
+# Terraform
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
