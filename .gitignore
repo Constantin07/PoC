@@ -100,3 +100,7 @@ terraform.tfstate.backup
 
 # Sensitive
 *.key
+*.pem
+*.p12
+*.jks
+keystore_creds
