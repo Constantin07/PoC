@@ -24,8 +24,7 @@ resource "tls_self_signed_cert" "ca" {
     street_address      = []
   }
 
-  is_ca_certificate  = true
-  set_subject_key_id = true
+  is_ca_certificate = true
 
   validity_period_hours = 87600
   early_renewal_hours   = 2160

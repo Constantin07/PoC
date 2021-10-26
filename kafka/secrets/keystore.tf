@@ -5,21 +5,31 @@ resource "null_resource" "keystore" {
     interpreter = ["/bin/bash", "-c"]
     command     = <<-EOT
       set -eu
+
+      rm -f broker.keystore.jks
+
       openssl pkcs12 -export \
        -in broker.pem \
        -inkey broker.key \
-       -CAfile ca.pem \
+       -chain -CAfile ca.pem \
        -name broker \
+       -caname "root" \
        -out broker.p12 \
        -password pass:$PASSWORD
 
-       keytool -importkeystore \
+      keytool -importkeystore \
        -noprompt \
        -srcstoretype PKCS12 \
        -srckeystore broker.p12 \
        -srcstorepass $PASSWORD \
-       -destkeystore kafka.broker.jks \
+       -destkeystore broker.keystore.jks \
+       -deststoretype pkcs12 \
        -deststorepass $PASSWORD
+
+      rm -f broker.truststore.jks
+      cp -p $JAVA_HOME/lib/security/cacerts broker.truststore.jks
+      keytool -import -noprompt -alias root -file ca.pem -storetype JKS -keystore broker.truststore.jks -storepass $PASSWORD -trustcacerts
+
     EOT
   }
 

@@ -21,7 +21,6 @@ resource "tls_cert_request" "broker" {
   }
 
   dns_names = [
-    "broker",
     "broker1",
     "broker2",
     "broker3",
