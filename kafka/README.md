@@ -39,7 +39,8 @@ zookeeper-shell localhost:2181 get /brokers/ids/1
 
 Show version of Kafka broker:
 ```bash
-kafka-broker-api-versions --bootstrap-server localhost:19092 --version
+kafka-broker-api-versions --bootstrap-server localhost:19092 --version   (PLAINTEXT)
+kafka-broker-api-versions --bootstrap-server localhost:19092 --command-config client.properties --version  (TLS)
 ```
 
 ### Topics
@@ -47,6 +48,7 @@ kafka-broker-api-versions --bootstrap-server localhost:19092 --version
 Get the list of topics:
 ```bash
 kafka-topics --bootstrap-server $BROKERS --list
+kafka-topics --bootstrap-server $BROKERS --command-config client.properties --list
 ```
 
 Create topic:
@@ -57,6 +59,7 @@ kafka-topics
 Describe topic:
 ```bash
 kafka-topics --bootstrap-server $BROKERS --describe --topic test-topic
+kafka-topics --bootstrap-server $BROKERS --command-config client.properties --describe --topic test-topic
 ```
 
 ### Consume messages
@@ -69,6 +72,7 @@ kafka-console-consumer --bootstrap-server $BROKERS --topic test-topic --from-beg
 Consume messages from topic using consumer-group:
 ```bash
 kafka-console-consumer --bootstrap-server $BROKERS --topic test-topic --group test-consumer-group
+kafka-console-consumer --bootstrap-server $BROKERS --consumer.config client.properties --topic test-topic --group test-consumer-group
 ```
 
 ### Consumer groups
@@ -76,6 +80,7 @@ kafka-console-consumer --bootstrap-server $BROKERS --topic test-topic --group te
 List consumer-groups:
 ```bash
 kafka-consumer-groups --bootstrap-server $BROKERS --list
+kafka-consumer-groups --bootstrap-server $BROKERS --command-config client.properties --list
 ```
 
 Describe consumer-group:
@@ -83,3 +88,7 @@ Describe consumer-group:
 kafka-consumer-groups --bootstrap-server $BROKERS --describe --group test-consumer-group
 ```
 
+Get the list of ACLs:
+```bash
+kafka-acls --bootstrap-server $BROKERS --command-config client.properties --list
+```

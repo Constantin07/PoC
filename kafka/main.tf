@@ -23,8 +23,8 @@ resource "kafka_topic" "test-topic" {
   partitions         = 3
 
   config = {
-    "cleanup.policy" = "compact,delete"
+    "cleanup.policy" = "delete"
     "segment.ms"     = "4000"
-    "retention.ms"   = "86400000"
+    "retention.ms"   = "86400001"
   }
 }

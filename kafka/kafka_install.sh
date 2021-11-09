@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Install Kafka
+# Install Kafka in user's HOME directory
 
 # Set PATH to Kafka binaries in ~/.bash_profile
 # PATH=$PATH:$HOME/kafka/bin

@@ -1,4 +1,4 @@
-# Broker resources
+# Certificates for Brokers
 
 resource "tls_private_key" "broker" {
   algorithm = "RSA"

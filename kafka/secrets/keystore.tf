@@ -27,7 +27,7 @@ resource "null_resource" "keystore" {
        -deststorepass $PASSWORD
 
       rm -f broker.truststore.jks
-      cp "$JAVA_HOME/lib/security/cacerts" broker.truststore.jks
+      cp $JAVA_HOME/lib/security/cacerts broker.truststore.jks
       keytool -import -noprompt -alias root -file ca.pem -storetype JKS -keystore broker.truststore.jks -storepass $PASSWORD -trustcacerts
 
     EOT
