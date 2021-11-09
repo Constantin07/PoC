@@ -46,7 +46,7 @@ services:
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
     volumes:
       - type: bind
-        source: /root/PoC/kafka/secrets
+        source: ./secrets
         target: /etc/kafka/secrets
         read_only: true
 
@@ -85,7 +85,7 @@ services:
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
     volumes:
       - type: bind
-        source: /root/PoC/kafka/secrets
+        source: ./secrets
         target: /etc/kafka/secrets
         read_only: true
 
@@ -124,6 +124,6 @@ services:
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
     volumes:
       - type: bind
-        source: /root/PoC/kafka/secrets
+        source: ./secrets
         target: /etc/kafka/secrets
         read_only: true
