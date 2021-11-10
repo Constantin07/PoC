@@ -1,4 +1,4 @@
-# JKS keystore
+# JKS keystore for brokers
 
 resource "null_resource" "keystore" {
   provisioner "local-exec" {

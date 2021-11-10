@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
-# This script sends test messages to Kafaka topic
+"""This script sends test messages to Kafaka topic"""
 
-from kafka import KafkaProducer
 import time
 import json
 import random
 from datetime import datetime
+from kafka import KafkaProducer
+
 
 kafkaBrokers='localhost:19092,localhost:29092,localhost:39092'
 caRootLocation='secrets/ca.pem'
