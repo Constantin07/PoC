@@ -1,6 +1,8 @@
 # Testing Kafka with Terraform provider for managing topics and ACLs.
 
-## Prerequisites (MacOS)
+## Prerequisites
+
+### MacOS
 
 Install required packages
 
@@ -9,10 +11,18 @@ brew install openjdk@11
 brew install kafka
 ```
 
+### Linux
+
+Run the `kafka_install.sh` script to install Kafka binaries in your HOME directory.
+
 Set path to kafka binaries:
 ```bash
 export PATH="$PATH:/usr/local/opt/kafka/bin"
 ```
+
+## Generating certificates
+
+See [secrets/README.md](secrets/README.md) for generating TLS certificates.
 
 ## Starting Kafka cluster locally
 

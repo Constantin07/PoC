@@ -1,6 +1,6 @@
-This terraform plan creates certificates and JSK keystore for Kafka brokers.
+# This terraform plan creates certificates and JSK keystore for Kafka brokers.
 
-# Requirements
+## Requirements
 
 The following tools needs to be installed:
 
@@ -14,6 +14,5 @@ The `JAVA_HOME` environment variable must be defined.
 Make sure to set env. variable `PASSWORD` used for JKS keystore.
 Create the `keystore_creds` file with the JKS keystore password (same as the above variable) as Kafka container requires it.
 
-# How to generate certificates
-
+## How to generate certificates
 In this directory run `terraform init -upgrade` and then `terraform apply`.
