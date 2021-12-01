@@ -5,12 +5,13 @@ set +x
 
 source .env
 
+export PGPASSWORD
+
 # Check if required variables are set
 : ${PGPASSWORD:?$PGPASSWORD is not set}
 : ${DB_HOST:?$DB_HOST is not set}
 : ${DB_USER:?$DB_USER is not set}
 : ${POSTGRES_USER:?$POSTGRES_USER is not set}
-
 
 DEFAULT_SCHEMA="public"
 
