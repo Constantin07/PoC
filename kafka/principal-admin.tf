@@ -42,6 +42,10 @@ resource "kafka_acl" "admin_topic" {
   acl_operation       = "All"
   acl_permission_type = "Allow"
   acl_host            = "*"
+
+  depends_on = [
+    kafka_acl.admin_cluster
+  ]
 }
 
 # Admin group operations
@@ -52,6 +56,10 @@ resource "kafka_acl" "admin_group" {
   acl_operation       = "All"
   acl_permission_type = "Allow"
   acl_host            = "*"
+
+  depends_on = [
+    kafka_acl.admin_cluster
+  ]
 }
 
 # Admin transactional operations
@@ -63,4 +71,3 @@ resource "kafka_acl" "admin_transactional" {
   acl_permission_type = "Allow"
   acl_host            = "*"
 }
-
