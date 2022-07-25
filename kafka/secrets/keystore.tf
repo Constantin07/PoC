@@ -2,7 +2,7 @@
 
 resource "null_resource" "keystore" {
   provisioner "local-exec" {
-    interpreter = ["/bin/bash", "-c"]
+    interpreter = ["/usr/bin/bash", "-c"]
     command     = <<-EOT
       set -eu
 

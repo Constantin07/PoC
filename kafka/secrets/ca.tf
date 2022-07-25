@@ -5,14 +5,13 @@ resource "tls_private_key" "ca" {
   rsa_bits  = "2048"
 }
 
-resource "local_file" "ca_key" {
-  sensitive_content = tls_private_key.ca.private_key_pem
-  filename          = "${path.module}/ca.key"
-  file_permission   = "0444"
+resource "local_sensitive_file" "ca_key" {
+  content         = tls_private_key.ca.private_key_pem
+  filename        = "${path.module}/ca.key"
+  file_permission = "0444"
 }
 
 resource "tls_self_signed_cert" "ca" {
-  key_algorithm   = tls_private_key.ca.algorithm
   private_key_pem = tls_private_key.ca.private_key_pem
 
   subject {

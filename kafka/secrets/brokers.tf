@@ -5,14 +5,13 @@ resource "tls_private_key" "broker" {
   rsa_bits  = "2048"
 }
 
-resource "local_file" "broker_key" {
-  sensitive_content = tls_private_key.broker.private_key_pem
-  filename          = "${path.module}/broker.key"
-  file_permission   = "0444"
+resource "local_sensitive_file" "broker_key" {
+  content         = tls_private_key.broker.private_key_pem
+  filename        = "${path.module}/broker.key"
+  file_permission = "0444"
 }
 
 resource "tls_cert_request" "broker" {
-  key_algorithm   = tls_private_key.broker.algorithm
   private_key_pem = tls_private_key.broker.private_key_pem
 
   subject {
@@ -34,7 +33,6 @@ resource "tls_cert_request" "broker" {
 
 resource "tls_locally_signed_cert" "broker" {
   cert_request_pem   = tls_cert_request.broker.cert_request_pem
-  ca_key_algorithm   = tls_private_key.ca.algorithm
   ca_private_key_pem = tls_private_key.ca.private_key_pem
   ca_cert_pem        = tls_self_signed_cert.ca.cert_pem
 
@@ -51,8 +49,8 @@ resource "tls_locally_signed_cert" "broker" {
   ]
 }
 
-resource "local_file" "broker_cert" {
-  sensitive_content = tls_locally_signed_cert.broker.cert_pem
-  filename          = "${path.module}/broker.pem"
-  file_permission   = "0444"
+resource "local_sensitive_file" "broker_cert" {
+  content         = tls_locally_signed_cert.broker.cert_pem
+  filename        = "${path.module}/broker.pem"
+  file_permission = "0444"
 }
