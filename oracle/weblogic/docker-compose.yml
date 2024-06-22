@@ -1,0 +1,29 @@
+
+services:
+  wlsadmin:
+    image: container-registry.oracle.com/middleware/weblogic:12.2.1.4-240521
+    container_name: wlsadmin
+    hostname: wlsadmin
+    restart: always
+    ports:
+      - "7001:7001"
+      - "9002:9002"
+    environment:
+      DOMAIN_NAME: domain
+      HEALTH_SCRIPT_FILE: "echo https://localhost:9002/weblogic/ready"
+    volumes:
+      - ./properties:/u01/oracle/properties
+
+  server1:
+    image: oracle/weblogic:12.2.1.4-generic
+    container_name: server1
+    hostname: server1
+    command: [ "/u01/oracle/createServer.sh" ]
+    ports:
+      - "8001:8001"
+    environment:
+      ADMIN_PASSWORD: "test1234"
+      MS_NAME: server1
+    depends_on:
+      wlsadmin:
+        condition: service_healthy
